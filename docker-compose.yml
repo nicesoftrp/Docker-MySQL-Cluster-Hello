@@ -1,0 +1,32 @@
+version: '3'
+services:    
+    mysqlnode1:
+        image: mysql:${MYSQL_VERSION}
+        container_name: mysqlnode1
+        restart: always
+        env_file:
+            - ".env"
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        ports:
+            - "3310:3306"
+        volumes:
+            - "./data/db/mysql1:/var/lib/mysql"
+    mysqlnode2:
+        image: mysql:${MYSQL_VERSION}
+        container_name: mysqlnode2
+        restart: always
+        env_file:
+            - ".env"
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        ports:
+            - "3320:3306"
+        volumes:
+            - "./data/db/mysql2:/var/lib/mysql"
